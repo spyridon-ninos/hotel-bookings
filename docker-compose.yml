@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+
+  hotel_bookings:
+    build: .
+    image: hotel_bookings
+    container_name: hotel_bookings
+    ports:
+      - "5000:5000"
+    environment:
+      LOGGING_LEVEL: DEBUG
+      DEBUGJPASQL: "false"
+    command: ["java", "-jar", "/hotel-bookings.jar"]

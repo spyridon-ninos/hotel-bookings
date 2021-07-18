@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.3.4.RELEASE</version>
+	</parent>
+
+	<groupId>com.ninos</groupId>
+	<artifactId>hotel-bookings</artifactId>
+	<version>1.0.0</version>
+	<name>hotel-bookings</name>
+	<description>This is the hotel bookings API, an implementation of the requirements given by XXXXXX as part as the recruiting process</description>
+
+	<properties>
+		<java.version>14</java.version>
+		<validation-api.version>2.0.1.Final</validation-api.version>
+		<hibernate-validator.version>6.1.6.Final</hibernate-validator.version>
+		<springdoc-openapi-ui.version>1.4.8</springdoc-openapi-ui.version>
+		<ehcache3.version>3.9.0</ehcache3.version>
+		<surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
+		<owasp-dependency-check.version>6.0.1</owasp-dependency-check.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>${ehcache3.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${validation-api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate-validator.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>${springdoc-openapi-ui.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<executable>true</executable>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${surefire-plugin.version}</version>
+				<configuration>
+					<argLine>--enable-preview</argLine>
+					<excludes>
+						<exclude>**/*IT.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${surefire-plugin.version}</version>
+				<configuration>
+					<argLine>--enable-preview</argLine>
+					<excludes>
+						<exclude>**/*Test.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.owasp</groupId>
+				<artifactId>dependency-check-maven</artifactId>
+				<version>${owasp-dependency-check.version}</version>
+				<configuration>
+					<assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+					<swiftPackageManagerAnalyzerEnabled>false</swiftPackageManagerAnalyzerEnabled>
+					<bundleAuditAnalyzerEnabled>false</bundleAuditAnalyzerEnabled>
+					<cocoapodsAnalyzerEnabled>false</cocoapodsAnalyzerEnabled>
+					<nugetconfAnalyzerEnabled>false</nugetconfAnalyzerEnabled>
+					<nuspecAnalyzerEnabled>false</nuspecAnalyzerEnabled>
+					<retireJsAnalyzerEnabled>false</retireJsAnalyzerEnabled>
+					<composerAnalyzerEnabled>false</composerAnalyzerEnabled>
+					<pipAnalyzerEnabled>false</pipAnalyzerEnabled>
+					<cmakeAnalyzerEnabled>false</cmakeAnalyzerEnabled>
+					<autoconfAnalyzerEnabled>false</autoconfAnalyzerEnabled>
+					<rubygemsAnalyzerEnabled>false</rubygemsAnalyzerEnabled>
+					<pyPackageAnalyzerEnabled>false</pyPackageAnalyzerEnabled>
+					<pyDistributionAnalyzerEnabled>false</pyDistributionAnalyzerEnabled>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
